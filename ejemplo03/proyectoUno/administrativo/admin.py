@@ -3,6 +3,7 @@ from django.contrib import admin
 # Importar las clases del modelo
 from administrativo.models import Estudiante, NumeroTelefonico
 
+
 # Agregar la clase Estudiante para administrar desde
 # interfaz de administración
 # admin.site.register(Estudiante)
@@ -15,8 +16,9 @@ class EstudianteAdmin(admin.ModelAdmin):
     # por cada registro
     # se deja de usar la representación (str)
     # de la clase
-    list_display = ('nombre', 'apellido', 'cedula')
-    search_fields = ('nombre', 'cedula')
+    list_display = ("nombre", "apellido", "cedula")
+    search_fields = ("nombre", "cedula")
+
 
 # admin.site.register se lo altera
 # el primer argumento es el modelo (Estudiante)
@@ -27,6 +29,7 @@ admin.site.register(Estudiante, EstudianteAdmin)
 # interfaz de administración
 # admin.site.register(NumeroTelefonico)
 
+
 # Se crea una clase que hereda
 # de ModelAdmin para el modelo
 # NumeroTelefonico
@@ -36,14 +39,16 @@ class NumeroTelefonicoAdmin(admin.ModelAdmin):
     # se deja de usar la representación (str)
     # de la clase
     # list_display = ('telefono', 'tipo', 'estudiante')
-    list_display = ('telefono', 'tipo', 'get_estudiante')
+    list_display = ("telefono", "tipo", "get_estudiante")
     # se agrega el atributo
     # raw_id_fields que permite acceder a una interfaz
     # para buscar los estudiantes y seleccionar el que
     # se desee
-    raw_id_fields = ('estudiante',)
+    raw_id_fields = ("estudiante",)
 
     def get_estudiante(self, obj):
         """ """
         return obj.estudiante.apellido
+
+
 admin.site.register(NumeroTelefonico, NumeroTelefonicoAdmin)
